@@ -6,7 +6,7 @@
     <changeSet id="1" author="chandramani">
         <sql>
             -- Create the Snowflake stage
-            CREATE STAGE IF NOT EXISTS tesla_aws_stage
+            CREATE STAGE tesla_aws_stage
             URL='s3://chintusnowflake/project1/''
             STORAGE_INTEGRATION = s3_int;
         </sql>
