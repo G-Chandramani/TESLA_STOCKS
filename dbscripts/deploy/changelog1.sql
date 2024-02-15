@@ -18,3 +18,5 @@ volume bigint );
 create or replace stage tesla_stage
 url ='s3://chintusnowflake/csv/project1/'
 STORAGE_INTEGRATION = s3_int;
+
+list @tesla_stage;
