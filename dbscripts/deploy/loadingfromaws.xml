@@ -8,19 +8,11 @@
     <changeSet id="1" author="chandramani">
         <sql>
             
-            create or replace stage tsla_data_snowpipe
+            create or replace stage tsla_stage
             url ='s3://chintusnowflake/project1/'
             STORAGE_INTEGRATION = s3_int;
         </sql>
     </changeSet>
- 
-     <changeSet id="2" author="chandramani">
-        <sql>
-            COPY INTO Tesla_data
-            FROM @tsla_data_snowpipe
-            FILE_FORMAT=(TYPE='CSV' FIELD_DELIMITER=',' SKIP_HEADER = 1)
-            PURGE=TRUE;
-        </sql>
-    </changeSet>
+
 
 </databaseChangeLog>
