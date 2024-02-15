@@ -14,12 +14,3 @@ low double,
 close double, 
 adj_close double,
 volume bigint );
-
---changeset Chandramani:2
-use schema TESLA_SCHEMA;
-
-select * from tesla data limit 10;
-
-UPDATE tesla_data
-SET open = 25.5
-WHERE open = 3.8;
