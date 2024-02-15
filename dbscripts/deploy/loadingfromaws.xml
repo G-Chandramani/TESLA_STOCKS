@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <!-- Create Snowflake Stage -->
+    <changeSet id="1" author="chandramani">
+        <sql>
+            -- Create the Snowflake stage
+            CREATE STAGE IF NOT EXISTS tesla_aws_stage
+            URL='s3://chintusnowflake/project1/''
+            STORAGE_INTEGRATION = s3_int;
+        </sql>
+    </changeSet>
+
+    <!-- Load Data from S3 -->
+    <changeSet id="2" author="chandramani">
+        <sql>
+            -- Load data from S3 to Snowflake table
+            COPY INTO Tesla_data
+            FROM @tesla_aws_stage
+            FILE_FORMAT=(TYPE='CSV' FIELD_DELIMITER=',' SKIP_HEADER = 1)
+            PURGE=TRUE;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
