@@ -22,5 +22,4 @@
             PURGE=TRUE;
         </sql>
     </changeSet>
-
 </databaseChangeLog>
