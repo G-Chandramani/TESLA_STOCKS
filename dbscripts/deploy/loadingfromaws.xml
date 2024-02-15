@@ -22,4 +22,26 @@
             PURGE=TRUE;
         </sql>
     </changeSet>
+
+    <!-- Load Data from S3 -->
+    <changeSet id="3" author="chandramani">
+        <sql>
+            -- creating stage for snowpipe
+            create or replace stage tsla_data_snowpipe
+            url ='s3://chintusnowflake/project1/'
+            STORAGE_INTEGRATION = s3_int;
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="chandramani">
+        <sql>
+            -- Load data from S3 to Snowflake pipe
+
+            create or replace file format tsla_data_snowpipe2
+            type = csv
+            field_delimiter=',' 
+            skip_header = 1;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
