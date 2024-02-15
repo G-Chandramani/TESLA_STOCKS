@@ -15,8 +15,6 @@ close double,
 adj_close double,
 volume bigint );
 
- COPY INTO Tesla_data
- FROM @tsla_data_snowpipe
-FILE_FORMAT=(TYPE='CSV' FIELD_DELIMITER=',' SKIP_HEADER = 1)
-files=('TSLA.csv')
-PURGE=TRUE;
+UPDATE tesla_data
+SET open = 25.5
+WHERE open = 3.8;
