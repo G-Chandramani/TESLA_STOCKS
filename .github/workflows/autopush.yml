@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - 'dbscript/deploy/**'
+      - 'dbscripts/deploy/**'
 
 # a workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,14 +22,14 @@ jobs:
     - name: Run 'Liquibase clearCheckSums' in Docker Container
       uses: docker://liquibase/liquibase:latest
       with:
-        args:  --url=jdbc:snowflake://skteukb-rq71849.snowflakecomputing.com/?db=tesla_db_github&schema=TESLA_SCHEMA&warehouse=chandramani --changeLogFile=/dbscript/mainChangelog.xml --username=${{secrets.SF_USERNAME}} --password=${{secrets.SF_PASSWORD}} --liquibase-schema-name=${{secrets.SF_SCHEMA}} --default-schema-name=${{secrets.SF_SCHEMA}} --log-level=debug clearCheckSums
+        args:  --url=jdbc:snowflake://skteukb-rq71849.snowflakecomputing.com/?db=tesla_db_github&schema=TESLA_SCHEMA&warehouse=chandramani --changeLogFile=/dbscripts/mainChangelog.xml --username=${{secrets.SF_USERNAME}} --password=${{secrets.SF_PASSWORD}} --liquibase-schema-name=${{secrets.SF_SCHEMA}} --default-schema-name=${{secrets.SF_SCHEMA}} --log-level=debug clearCheckSums
         
     - name: Run 'Liquibase status' in Docker Container
       uses: docker://liquibase/liquibase:latest
       with:
-        args: --url=jdbc:snowflake://skteukb-rq71849.snowflakecomputing.com/?db=tesla_db_github&schema=TESLA_SCHEMA&warehouse=chandramani --changeLogFile=/dbscript/mainChangelog.xml --username=${{secrets.SF_USERNAME}} --password=${{secrets.SF_PASSWORD}} --liquibase-schema-name=${{secrets.SF_SCHEMA}} --default-schema-name=${{secrets.SF_SCHEMA}} --log-level=INFO status
+        args: --url=jdbc:snowflake://skteukb-rq71849.snowflakecomputing.com/?db=tesla_db_github&schema=TESLA_SCHEMA&warehouse=chandramani --changeLogFile=/dbscripts/mainChangelog.xml --username=${{secrets.SF_USERNAME}} --password=${{secrets.SF_PASSWORD}} --liquibase-schema-name=${{secrets.SF_SCHEMA}} --default-schema-name=${{secrets.SF_SCHEMA}} --log-level=INFO status
         
     - name: Run 'Liquibase update' in Docker Container
       uses: docker://liquibase/liquibase:latest
       with:
-        args: --url=jdbc:snowflake://skteukb-rq71849.snowflakecomputing.com/?db=tesla_db_github&schema=TESLA_SCHEMA&warehouse=chandramani --changeLogFile=/dbscript/mainChangelog.xml --username=${{secrets.SF_USERNAME}} --password=${{secrets.SF_PASSWORD}} --liquibase-schema-name=${{secrets.SF_SCHEMA}} --default-schema-name=${{secrets.SF_SCHEMA}} --log-level=debug update
+        args: --url=jdbc:snowflake://skteukb-rq71849.snowflakecomputing.com/?db=tesla_db_github&schema=TESLA_SCHEMA&warehouse=chandramani --changeLogFile=/dbscripts/mainChangelog.xml --username=${{secrets.SF_USERNAME}} --password=${{secrets.SF_PASSWORD}} --liquibase-schema-name=${{secrets.SF_SCHEMA}} --default-schema-name=${{secrets.SF_SCHEMA}} --log-level=debug update
